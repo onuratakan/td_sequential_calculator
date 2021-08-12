@@ -1,46 +1,36 @@
 from setuptools import setup
 
 
-setup(name='get_crypto_price',
+setup(name='td_sequential',
 version='0.1.0',
-description="""A library to getting crypto price.""",
+description="""A library to calculating td sequental.""",
 long_description="""
-# Get Crypto Price
-A library to getting crypto price.
+# TD Sequential
+A library to calculating td sequental.
 # Install
 ```
-pip3 install get-crypto-price
+pip3 install td-sequential
 ```
 # Using
 ## In another script
 ```python
-from get_crypto_price import get
-# get(source = "bitstamp", pair = "btcusdt")
-print(get())
-```
-## In command line
-```console
-  -h, --help            show this help message and exit
-  -s SOURCE, --source SOURCE
-                        Source
-  -p PAIR, --pair PAIR  Pair
-```
-```console
-get_crypto_price
+from td_sequential import TDS
+for i in range(13):
+  buy_setup, sell_setup, buy, sell = TDS.price_update(i)
+  print(f"Buy setup: {buy_setup}")
+  print(f"Sell setup: {sell_setup}")
+  if buy:
+    print("BUY")
+  elif sell:
+    print("SELL")
 ```
 """,
 long_description_content_type='text/markdown',
-url='https://github.com/onuratakan/get_crypto_price',
+url='https://github.com/onuratakan/td_sequential',
 author='Onur Atakan ULUSOY',
 author_email='atadogan06@gmail.com',
 license='MIT',
-packages=["get_crypto_price"],
+packages=["td_sequential"],
 package_dir={'':'src'},
-install_requires=[
-    "requests==2.25.1"
-],
-entry_points = {
-    'console_scripts': ['get_crypto_price=get_crypto_price.get_crypto_price:get'],
-},
 python_requires=">= 3",
 zip_safe=False)
